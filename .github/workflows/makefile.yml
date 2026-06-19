@@ -1,0 +1,28 @@
+name: Build Kernel
+on:
+  workflow_dispatch:
+
+jobs:
+  Build-Kernel:
+    strategy:
+      fail-fast: false
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Build Kernel
+        uses: dabao1955/kernel_build_action@main
+        with:
+          kernel-url: https://github.com/Mayuri-Chan/android_kernel_xiaomi_mt6765/tree/0.6-ksu
+          kernel-dir: msm-4.19
+          kernel-branch: 10-alps
+          config: certus_defconfig
+          arch: arm64
+          aosp-gcc: true
+          aosp-clang: true
+          ksu-version: main
+          android-version: 12
+          aosp-clang-version: r383902
+          disable-lto: true
+          anykernel3: true
